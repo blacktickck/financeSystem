@@ -12,7 +12,8 @@ CATEGORY_RULES = {
         "Slice Sm",
         "DIVYANK CHAUHAN"
         "harshu0",
-        "Harshita"
+        "Harshita",
+        "Self tr"
     ],
 
     "Food": [
