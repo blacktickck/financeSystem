@@ -11,6 +11,7 @@ CATEGORY_RULES = {
     "Self Transfer":[
         "Slice Sm",
         "DIVYANK CHAUHAN"
+        "Divyank ",
         "harshu0",
         "Harshita",
         "Self tr"
