@@ -48,7 +48,9 @@ CATEGORY_RULES = {
         "groww",
         "zerodha",
         "stock",
-        "Raise Se"
+        "Raise Se",
+        "raisese",
+        "Recurri"
     ],
 
     "Trading": [
