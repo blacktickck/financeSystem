@@ -14,7 +14,8 @@ CATEGORY_RULES = {
         "Divyank ",
         "harshu0",
         "Harshita",
-        "Self tr"
+        "Self tr",
+        "8076417"
     ],
 
     "Food": [
