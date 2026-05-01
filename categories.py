@@ -18,7 +18,10 @@ CATEGORY_RULES = {
     "Food": [
         "zomato",
         "swiggy",
-        "VAISHNAV"
+        "VAISHNAV",
+        "McDonald",
+        "ANAND SW",
+        "ANJALI S"
     ],
 
     "Grocery": [
@@ -28,6 +31,9 @@ CATEGORY_RULES = {
         "grocery",
         "blinkit"
     ],
+    "Shopping": [
+        "Amazon"
+        ],
 
     "Transport": [
         "uber",
