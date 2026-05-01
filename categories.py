@@ -35,7 +35,8 @@ CATEGORY_RULES = {
         "blinkit"
     ],
     "Shopping": [
-        "Amazon"
+        "Amazon",
+        "Meesho"
         ],
 
     "Transport": [

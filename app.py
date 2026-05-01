@@ -10,39 +10,40 @@ st.set_page_config(
 
 st.title("Automated Personal Finance System")
 
-uploaded_file = st.file_uploader(
-    "Upload Bank Statement",
-    type=["xlsx"]
+uploaded_files = st.file_uploader(
+    "Upload Bank Statements",
+    type=["xlsx"],
+    accept_multiple_files=True
 )
 
-if uploaded_file:
+if uploaded_files:
 
-    with open("temp.xlsx", "wb") as f:
-        f.write(uploaded_file.getbuffer())
+    all_dataframes = []
 
-    engine = FinanceEngine("temp.xlsx")
+    for uploaded_file in uploaded_files:
 
-    df = engine.load_data()
+        temp_file = uploaded_file.name
 
-    df = engine.process_transactions()
+        with open(temp_file, "wb") as f:
+            f.write(uploaded_file.getbuffer())
 
-    summary = engine.calculate_summary()
+        engine = FinanceEngine(temp_file)
 
-    st.subheader("Financial KPIs")
+        df = engine.load_data()
 
-    col1, col2, col3, col4 = st.columns(4)
+        df = engine.process_transactions()
 
-    col1.metric("Income", f"₹{summary['Total Income']:,.0f}")
-    col2.metric("Expense", f"₹{summary['Total Expense']:,.0f}")
-    col3.metric("Savings", f"₹{summary['Net Savings']:,.0f}")
-    col4.metric("Savings Rate", f"{summary['Savings Rate']}%")
+        account_name = uploaded_file.name.split(".")[0]
 
-    st.subheader("Categorized Transactions")
+        df["Account"] = account_name
 
-    st.dataframe(df)
+        all_dataframes.append(df)
 
-    st.subheader("Category Summary")
+    master_df = pd.concat(
+        all_dataframes,
+        ignore_index=True
+    )
 
-    category_summary = engine.category_summary()
+    st.subheader("Combined Transactions")
 
-    st.bar_chart(category_summary)
+    st.dataframe(master_df)
