@@ -59,4 +59,51 @@ if uploaded_files:
         filtered_df = master_df
     st.subheader("Combined Transactions")
 
-    st.dataframe(master_df)
+    st.dataframe(filtered_df)
+    total_income = filtered_df["Credit"].fillna(0).sum()
+
+    total_expense = filtered_df["Debit"].fillna(0).sum()
+
+    net_savings = total_income - total_expense
+
+    if total_income > 0:
+
+        savings_rate = (
+            net_savings / total_income
+        ) * 100
+
+    else:
+
+        savings_rate = 0
+
+
+    st.subheader("Financial KPIs")
+    st.subheader("Category Summary")
+
+    category_summary = filtered_df.groupby(
+        "Category"
+    )["Debit"].sum()
+
+    st.bar_chart(category_summary)
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    col1.metric(
+        "Income",
+        f"₹{total_income:,.0f}"
+    )
+
+    col2.metric(
+        "Expense",
+        f"₹{total_expense:,.0f}"
+    )
+
+    col3.metric(
+        "Savings",
+        f"₹{net_savings:,.0f}"
+    )
+
+    col4.metric(
+        "Savings Rate",
+        f"{savings_rate:.2f}%"
+    )
