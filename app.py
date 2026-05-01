@@ -43,7 +43,20 @@ if uploaded_files:
         all_dataframes,
         ignore_index=True
     )
+    selected_account = st.selectbox(
+        "Select Account",
+        ["All"] + list(master_df["Account"].unique())
+    )
 
+    if selected_account != "All":
+
+        filtered_df = master_df[
+            master_df["Account"] == selected_account
+        ]
+
+    else:
+
+        filtered_df = master_df
     st.subheader("Combined Transactions")
 
     st.dataframe(master_df)
